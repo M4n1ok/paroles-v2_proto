@@ -9,6 +9,47 @@ import Loader from './utils/loader'
 // Components
 import Slider from './components/slider'
 
+const PATH = '../assets/'
+
+const DATA  = [
+  {
+    id: 1,
+    title: 'Témoignage 1',
+    images: {
+      background: PATH + 'art1.jpg',
+      foreground: ''
+    },
+    colors: {
+      background: 'FCFCFC',
+      controls: '343434'
+    }
+  },
+  {
+    id: 2,
+    title: 'Témoignage 2',
+    images: {
+      background: PATH + 'art2.jpg',
+      foreground: ''
+    },
+    colors: {
+      background: 'FCFCFC',
+      controls: '343434'
+    }
+  },
+  {
+    id: 3,
+    title: 'Témoignage 3',
+    images: {
+      background: PATH + 'art3.jpg',
+      foreground: ''
+    },
+    colors: {
+      background: 'FCFCFC',
+      controls: '343434'
+    }
+  }
+]
+
 class SceneManager {
 
   constructor () {
@@ -29,11 +70,11 @@ class SceneManager {
 
   init () {
 
-    Promise.all([
-      Loader.loadImage('../assets/art1.jpg'),
-      Loader.loadImage('../assets/art2.jpg'),
-      Loader.loadImage('../assets/art3.jpg')
-    ]).then((e) => {
+    const LOADS = []
+    DATA.forEach((item) => {
+      LOADS.push(Loader.loadImage(item.images.background))
+    })
+    Promise.all(LOADS).then((e) => {
       this.slider = new Slider(e)
     })
 
