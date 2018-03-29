@@ -18,7 +18,7 @@ class SceneManager {
         StorageInstance.scene = this.scene;
         StorageInstance.camera = this.camera;
 
-        this.renderer = new WebGLRenderer();
+        this.renderer = new WebGLRenderer({antialias: true});
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
 
