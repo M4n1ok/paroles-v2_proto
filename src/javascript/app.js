@@ -1,20 +1,22 @@
-import '../scss/app.scss';
-import StorageInstance from './storage.js';
-import SceneManager from './sceneManager';
+'use strict'
 
-document.addEventListener('DOMContentLoaded', init, false);
+import '../scss/app.scss'
+import StorageInstance from './storage.js'
+import SceneManager from './sceneManager'
 
-function init() {
-    console.log('Salut Helene, Solenne, et Tonton Anto :)');
-    console.log('Et salut les p\'tite chattes !')
+document.addEventListener('DOMContentLoaded', init, false)
 
-    StorageInstance.sceneManager = new SceneManager();
+function init () {
+  console.log('Salut Helene, Solenne, et Tonton Anto :)')
+  console.log('Et salut les p\'tite chattes !')
 
-    if (StorageInstance.sceneManager.classInit) render();
+  StorageInstance.sceneManager = new SceneManager()
+
+  if (StorageInstance.sceneManager.classInit) render()
 }
 
-function render() {
-    requestAnimationFrame(render);
-    StorageInstance.time += 0.01;
-    StorageInstance.sceneManager.update();
+function render () {
+  requestAnimationFrame(render)
+  StorageInstance.time += 0.01
+  StorageInstance.sceneManager.update()
 }
