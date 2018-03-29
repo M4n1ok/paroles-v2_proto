@@ -14,8 +14,8 @@ class EventManager {
   }
 
   init () {
-    this.nextBtn = document.querySelector('.nextBtn')
-    this.prevBtn = document.querySelector('.prevBtn')
+    this.nextBtn = document.querySelector('.js-slideshow-next')
+    this.prevBtn = document.querySelector('.js-slideshow-prev')
     this.initEvent()
   }
 

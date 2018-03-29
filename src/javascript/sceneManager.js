@@ -20,6 +20,7 @@ class SceneManager {
 
     this.renderer = new WebGLRenderer({antialias: true})
     this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.renderer.setClearColor(0xFCFCFC)
     document.body.appendChild(this.renderer.domElement)
 
     this.classInit = true
