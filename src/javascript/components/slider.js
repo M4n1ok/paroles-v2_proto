@@ -58,9 +58,8 @@ class Slider {
         this.currentIndex++;
         this.toDirection -= M.TanDeg(75) / 2 * (window.innerWidth / window.innerHeight);
         
-        if (this.currentIndex === this.cards.length) {
+        if (this.currentIndex >= this.cards.length) {
             const card = this.cards[0]
-            console.log(this.cards[this.cards.length - 1].object.position.x)
             card.object.position.setX(this.cards[this.cards.length - 1].object.position.x + M.TanDeg(75) / 2 * (window.innerWidth / window.innerHeight));
             this.cards.splice(0,1)
             this.cards.push(card)
@@ -75,13 +74,22 @@ class Slider {
 
     prevSlide() {
         this.currentIndex--;
+        this.toDirection += M.TanDeg(75) / 2 * (window.innerWidth / window.innerHeight);
 
-        if (this.currentIndex === 0) {
-            const card = this.cards[this.cards.length]
+        if (this.currentIndex <= 0) {
+            const card = this.cards[this.cards.length - 1]
+            console.log(card);
+            console.log(this.cards[0]);
+            card.object.position.setX(this.cards[0].object.position.x - M.TanDeg(75) / 2 * (window.innerWidth / window.innerHeight));
             this.cards.pop()
             this.cards.unshift(card)
+            this.currentIndex++
             console.log('prev', this.cards)
         } 
+
+        this.time = new Date().getTime() + (0.5 * 1000);
+        let to = (this.time - new Date().getTime()) / 1000;
+        TweenMax.to(this, to, { ease: Expo.easeOut, x: this.toDirection });  
     }
 
     init() {

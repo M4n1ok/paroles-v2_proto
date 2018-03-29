@@ -15,6 +15,7 @@ class EventManager {
 
     init() {
         this.nextBtn = document.querySelector(".nextBtn");
+        this.prevBtn = document.querySelector(".prevBtn");
         this.initEvent();
     }
 
@@ -28,6 +29,9 @@ class EventManager {
 
         if(this.nextBtn) this.nextBtn.addEventListener('click', () => {
             if (this.slider) this.slider.nextSlide();
+        });
+        if (this.prevBtn) this.prevBtn.addEventListener('click', () => {
+            if (this.slider) this.slider.prevSlide();
         });
     }
 }
