@@ -9,7 +9,6 @@ class Card {
     constructor(option) {
 
         this.option = option;
-        this.object;
         this.classInit = true;
         this.init();
     }
@@ -26,14 +25,14 @@ class Card {
         this.object = new Mesh(geometry, material);
 
         if (this.option.direction == 'horizontal'){
-            let value = this.option.idx * (M.TanDeg(75));
-            this.object.translateX(value);
+            let value = (this.option.idx * (M.TanDeg(75) * (window.innerWidth / window.innerHeight) )) / 2;
+            this.object.position.set(value, 0, 0);
         }else{
-            this.object.translateY(this.option.y);
+            let value =  (this.option.idx * (M.TanDeg(75))) / 2;
+            this.object.position.set(0, value, 0);
         }
 
         this.object.scale.set(this.option.scaleX, this.option.scaleY, 1);
-
     }
 
     update() {

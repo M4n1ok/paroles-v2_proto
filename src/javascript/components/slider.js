@@ -1,4 +1,5 @@
 import StorangeInstance from '../storage';
+import EventManager from '../eventManager';
 
 //Libraires
 import { Object3D }  from 'three';
@@ -28,21 +29,21 @@ class Slider {
     set x(v) { 
         this.position[0] = v; 
         this.needUpdate = true;
-        if (this.object) this.object.translateX(this.position[0]); 
+        if (this.object) this.object.position.set(this.position[0], this.position[1], this.position[2]); 
     }
     get x() { return this.position[0]; }
 
     set y(v) { 
         this.position[1] = v; 
         this.needUpdate = true;
-        if (this.object) this.object.translateY(this.position[1]); 
+        if (this.object) this.object.position.set(this.position[0], this.position[1], this.position[2]); 
     }
     get y() { return this.position[1]; }
 
     set z(v) { 
         this.position[2] = v; 
         this.needUpdate = true;
-        if (this.object) this.object.translateZ(this.position[2]); 
+        if (this.object) this.object.position.set(this.position[0], this.position[1], this.position[2]); 
     }
     get z() { return this.position[2]; }
 
@@ -82,6 +83,9 @@ class Slider {
 
     update() {
 
+        for (let i = 0; i < this.nCards; i++){
+            // this.cards[i].object.lookAt(0.001,0,0);
+        }
         this.needUpdate = false;
     }
 

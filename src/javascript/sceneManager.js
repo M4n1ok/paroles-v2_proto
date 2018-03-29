@@ -41,7 +41,6 @@ class SceneManager {
     update(){
 
         if(this.slider) this.slider.update();
-
         this.renderer.render(this.scene, this.camera);
     }
 
