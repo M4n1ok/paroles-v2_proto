@@ -1,0 +1,128 @@
+.loader-container{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    .loader-backgrounds{
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        *{
+          position: absolute;
+          display: block;  
+          background: black;
+        }
+
+        .top{
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(90% - 10px);
+        }
+        .left{
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 10%;
+            transform-origin: left;
+            will-change: transform;
+            transition: 0.5s transform;
+        }
+        .bottom{
+            bottom: 0;
+            left: 0;
+            height: 10%;
+            width: 100%;
+        }
+        .right{
+            bottom: 0;
+            right: 0;
+            height: 100%;
+            width: 10%;
+            transform-origin: right;
+            will-change: transform;
+            transition: 0.5s transform;
+            transform: scaleX(1);
+        }
+
+    }
+
+    &.will-disappear{
+        .loader-backgrounds{
+            .left,
+            .right{
+                transform: scaleX(5);
+            }
+        }
+    }
+
+    .loader-bar{
+        display: block;
+        position: absolute;
+        width: 80%;
+        height: 10px;
+        left: 10%;
+        bottom: 10%;
+
+        .mask{
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: black;
+            transform-origin: right;
+            will-change: transform;
+            transition: 0.5s transform;
+        }
+    }
+
+    .loader-access-buttons{
+        display: block;
+        display: flex;
+        position: absolute;
+        width: 282px;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .loader-access{
+            width: 140px;
+            text-align: center;
+            cursor: pointer;
+            display: table;
+            will-change: transform, opacity;
+
+            .logo{
+                height: 40px;
+                width: (117px/2);
+                display: table;
+                margin: auto;
+                margin-bottom: 12px;
+                opacity: 0;
+            }
+
+            span{
+                opacity: 0;
+                display: inline-block;
+            }
+        }
+
+        .separator{
+            height: 58px;
+            width: 2px;
+            display: block;
+            background: white;
+            transform: scaleY(0);
+        }
+    }
+}
