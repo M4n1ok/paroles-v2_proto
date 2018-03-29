@@ -1,5 +1,5 @@
 // Librairies
-import { PlaneBufferGeometry, MeshBasicMaterial, Mesh, DoubleSide, Vector3} from 'three';
+import { PlaneBufferGeometry, MeshBasicMaterial, Mesh, DoubleSide, Vector3, Texture, RepeatWrapping} from 'three';
 
 // Utils
 import M from "../utils/math";
@@ -15,8 +15,14 @@ class Card {
     }
 
     init() {
+        this.texture = new Texture(this.option.img);
+        this.texture.wrapS = RepeatWrapping;
+        this.texture.wrapT = RepeatWrapping;
+        this.texture.repeat.set(1, 1);
+
         var geometry = new PlaneBufferGeometry(2, 2, 1);
-        var material = new MeshBasicMaterial({ color: 0xffffff, side: DoubleSide });
+        var material = new MeshBasicMaterial({ color: 0xffffff, side: DoubleSide, map: this.texture, transparent: true });
+        this.texture.needsUpdate = true;
         this.object = new Mesh(geometry, material);
 
         if (this.option.direction == 'horizontal'){

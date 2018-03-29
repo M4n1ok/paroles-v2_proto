@@ -15,7 +15,7 @@ class Slider {
     constructor(e) {
 
         // FAKE DATAS
-        this.nCards = 6;
+        this.nCards = e.length;
         this.position = vec3.create();
         this.imgs = e;
 
@@ -58,7 +58,8 @@ class Slider {
             scaleX: 1,
             scaleY: 1,
             offset : 1,
-            direction : 'horizontal'
+            direction : 'horizontal',
+            img: null
         };
 
         let scaleX = (window.innerWidth / window.innerHeight) * M.TanDeg(75 / 2) * 0.80;
@@ -69,6 +70,7 @@ class Slider {
 
         for(let i = 0; i < this.nCards; i++){
             option.idx = i;
+            option.img = this.imgs[i];
             let card = new Card(option);
             this.cards.push(card);
             this.object.add(card.object);

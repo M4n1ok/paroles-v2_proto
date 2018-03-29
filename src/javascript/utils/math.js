@@ -1,8 +1,6 @@
 class Mathematics {
 
-    constructor() { 
-
-    }
+    constructor() {}
 
     degreesToRads(deg){
         return deg * Math.PI / 180.0;
