@@ -141,6 +141,7 @@ class Slider {
     for (let i = 0; i < this.nCards; i++) {
       if (this.cards[i].material && EventManager.mouseEventInformations.x){
         this.cards[i].object.material.uniforms.offset.value = EventManager.mouseEventInformations.x / 200
+        this.cards[i].object.material.uniforms.time.value = StorangeInstance.time
         //console.log(this.cards[i].object.material.uniforms.offset.value);
       }
       this.cards[i].object.rotation.set(EventManager.mouseEventInformations.y * M.degreesToRads(this.maxDeg), EventManager.mouseEventInformations.x * M.degreesToRads(this.maxDeg), 0)

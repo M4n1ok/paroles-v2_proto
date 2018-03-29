@@ -4,6 +4,9 @@ import { PlaneBufferGeometry, MeshBasicMaterial, Mesh, DoubleSide, Vector3, Text
 // Utils
 import M from '../utils/math'
 
+//components
+import StorageInstance from '../storage'
+
 import fBasic from "../../shaders/basic.frag"
 import vBasic from "../../shaders/basic.vert"
 
@@ -34,7 +37,10 @@ class Card {
       uniforms: {
         background: { type: 't', value: this.background },
         foreground: { type: 't', value: this.foreground },
-        offset: { type: 'f', value: this.offset / 200}
+        offset: { type: 'f', value: this.offset / 200},
+        time: { type: 'f', value: StorageInstance.time },
+        affect: { type: 'f', value: 1 },
+        strength: { type: 'f', value: 1 }
       },
       vertexShader: vBasic,
       fragmentShader: fBasic,
