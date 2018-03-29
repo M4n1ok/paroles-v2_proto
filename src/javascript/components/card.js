@@ -1,8 +1,11 @@
 // Librairies
-import { PlaneBufferGeometry, MeshBasicMaterial, Mesh, DoubleSide, Vector3, Texture, RepeatWrapping } from 'three'
+import { PlaneBufferGeometry, MeshBasicMaterial, Mesh, DoubleSide, Vector3, Texture, RepeatWrapping, RawShaderMaterial } from 'three'
 
 // Utils
 import M from '../utils/math'
+
+import fBasic from "../../shaders/basic.frag"
+import vBasic from "../../shaders/basic.vert"
 
 class Card {
 
@@ -10,19 +13,36 @@ class Card {
 
     this.option = option
     this.classInit = true
+    this.offset = 0
     this.init()
   }
 
   init () {
-    this.texture = new Texture(this.option.img)
-    this.texture.wrapS = RepeatWrapping
-    this.texture.wrapT = RepeatWrapping
-    this.texture.repeat.set(1, 1)
+    this.background = new Texture(this.option.background)
+    this.background.wrapS = RepeatWrapping
+    this.background.wrapT = RepeatWrapping
+    this.background.repeat.set(1, 1)
+
+    this.foreground = new Texture(this.option.foreground)
+    this.foreground.wrapS = RepeatWrapping
+    this.foreground.wrapT = RepeatWrapping
+    this.foreground.repeat.set(1, 1)
 
     var geometry = new PlaneBufferGeometry(2, 2, 1)
-    var material = new MeshBasicMaterial({color: 0xffffff, side: DoubleSide, map: this.texture, transparent: true})
-    this.texture.needsUpdate = true
-    this.object = new Mesh(geometry, material)
+    this.material = new RawShaderMaterial({
+
+      uniforms: {
+        background: { type: 't', value: this.background },
+        foreground: { type: 't', value: this.foreground },
+        offset: { type: 'f', value: this.offset / 200}
+      },
+      vertexShader: vBasic,
+      fragmentShader: fBasic,
+
+    });
+    this.background.needsUpdate = true
+    this.foreground.needsUpdate = true
+    this.object = new Mesh(geometry, this.material)
 
     if (this.option.direction == 'horizontal') {
       let value = (this.option.idx * (M.TanDeg(75) * (window.innerWidth / window.innerHeight))) / 2

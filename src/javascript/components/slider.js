@@ -17,7 +17,7 @@ class Slider {
   constructor (e) {
 
     // FAKE DATAS
-    this.nCards = e.length
+    this.nCards = e.length/2
     this.imgs = e
 
     this.time = null
@@ -108,7 +108,8 @@ class Slider {
       scaleY: 1,
       offset: 1,
       direction: 'horizontal',
-      img: null
+      background: null,
+      foreground: null
     }
 
     let scaleX = (window.innerWidth / window.innerHeight) * M.TanDeg(75 / 2) * 0.80
@@ -117,12 +118,18 @@ class Slider {
     option.scaleX = scaleX
     option.scaleY = scaleY
 
+    let y = 0;
     for (let i = 0; i < this.nCards; i++) {
       option.idx = i
-      option.img = this.imgs[i]
+      option.background = this.imgs[y]
+      option.foreground = this.imgs[y + 1]
+      console.log(option.background)
+      console.log(option.foreground)
       let card = new Card(option)
       this.cards.push(card)
       this.object.add(card.object)
+
+      y += 2
     }
 
     StorangeInstance.scene.add(this.object)
@@ -132,6 +139,10 @@ class Slider {
   update () {
 
     for (let i = 0; i < this.nCards; i++) {
+      if (this.cards[i].material && EventManager.mouseEventInformations.x){
+        this.cards[i].object.material.uniforms.offset.value = EventManager.mouseEventInformations.x / 200
+        //console.log(this.cards[i].object.material.uniforms.offset.value);
+      }
       this.cards[i].object.rotation.set(EventManager.mouseEventInformations.y * M.degreesToRads(this.maxDeg), EventManager.mouseEventInformations.x * M.degreesToRads(this.maxDeg), 0)
     }
     this.needUpdate = false

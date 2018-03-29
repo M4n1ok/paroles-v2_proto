@@ -16,8 +16,8 @@ const DATA  = [
     id: 1,
     title: 'Témoignage 1',
     images: {
-      background: PATH + 'art1.jpg',
-      foreground: ''
+      background: PATH + 'proto_01_2.png',
+      foreground: PATH + 'proto_01_1.png'
     },
     colors: {
       background: 'FCFCFC',
@@ -28,8 +28,8 @@ const DATA  = [
     id: 2,
     title: 'Témoignage 2',
     images: {
-      background: PATH + 'art2.jpg',
-      foreground: ''
+      background: PATH + 'proto_02_2.png',
+      foreground: PATH + 'proto_02_1.png'
     },
     colors: {
       background: 'FCFCFC',
@@ -40,8 +40,8 @@ const DATA  = [
     id: 3,
     title: 'Témoignage 3',
     images: {
-      background: PATH + 'art3.jpg',
-      foreground: ''
+      background: PATH + 'proto_03_2.png',
+      foreground: PATH + 'proto_03_1.png'
     },
     colors: {
       background: 'FCFCFC',
@@ -59,6 +59,7 @@ class SceneManager {
     StorageInstance.scene = this.scene
     StorageInstance.camera = this.camera
 
+
     this.renderer = new WebGLRenderer({antialias: true})
     this.renderer.setSize(window.innerWidth, window.innerHeight)
     this.renderer.setClearColor(0xFCFCFC)
@@ -73,6 +74,7 @@ class SceneManager {
     const LOADS = []
     DATA.forEach((item) => {
       LOADS.push(Loader.loadImage(item.images.background))
+      LOADS.push(Loader.loadImage(item.images.foreground))
     })
     Promise.all(LOADS).then((e) => {
       this.slider = new Slider(e)
