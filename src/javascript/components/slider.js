@@ -1,5 +1,5 @@
 import StorangeInstance from '../storage'
-import EventManager from '../eventManager'
+import EventManager from '../events/eventManager'
 
 //Libraires
 import { TweenMax } from 'gsap'
@@ -11,26 +11,27 @@ import M from '../utils/math'
 
 // Components
 import Card from './card'
+import TitleManager from './titleManager'
 
 class Slider {
 
-  constructor (e) {
+  constructor (e, datas) {
 
     // FAKE DATAS
-    this.nCards = e.length/2
+    this.nCards = datas.length
+    this.cardsData = datas
     this.imgs = e
-
     this.time = null
-
+    this.titleManager = TitleManager
     this.toDirection = 0
-
     this.maxDeg = 2
     this.position = vec3.create()
     this.object = new Object3D()
     this.cards = []
     this.classInit = true
-    this.init()
     this.currentIndex = 0
+    this.currentCard = null
+    this.init()
   }
 
   set x (v) {
@@ -67,9 +68,11 @@ class Slider {
       this.cards.splice(0, 1)
       this.cards.push(card)
       this.currentIndex--
-      console.log('next', this.cards)
     }
 
+    this.currentCard = this.cards[this.currentIndex]
+    this.updateCardTitle()
+    this.titleManager._hide()
     this.time = new Date().getTime() + (0.5 * 1000)
     let to = (this.time - new Date().getTime()) / 1000
     TweenMax.to(this, to, {ease: Expo.easeOut, x: this.toDirection})
@@ -81,18 +84,22 @@ class Slider {
 
     if (this.currentIndex <= 0) {
       const card = this.cards[this.cards.length - 1]
-      console.log(card)
-      console.log(this.cards[0])
       card.object.position.setX(this.cards[0].object.position.x - M.TanDeg(75) / 2 * (window.innerWidth / window.innerHeight))
       this.cards.pop()
       this.cards.unshift(card)
       this.currentIndex++
-      console.log('prev', this.cards)
     }
 
+    this.currentCard = this.cards[this.currentIndex]
+    this.updateCardTitle()
+    this.titleManager._hide()
     this.time = new Date().getTime() + (0.5 * 1000)
     let to = (this.time - new Date().getTime()) / 1000
     TweenMax.to(this, to, {ease: Expo.easeOut, x: this.toDirection})
+  }
+
+  updateCardTitle() {
+    this.titleManager.title = this.currentCard.title
   }
 
   init () {
@@ -123,13 +130,22 @@ class Slider {
       option.idx = i
       option.background = this.imgs[y]
       option.foreground = this.imgs[y + 1]
-      console.log(option.background)
-      console.log(option.foreground)
+
+      option.id = this.cardsData[i].id
+      option.title = this.cardsData[i].title
+
       let card = new Card(option)
       this.cards.push(card)
       this.object.add(card.object)
 
       y += 2
+
+      if(i === 0) {
+        this.titleManager.title = card.title
+        const TIMEOUT = window.setTimeout(() => {
+          this.titleManager._show()
+        }, 1000)
+      }
     }
 
     StorangeInstance.scene.add(this.object)

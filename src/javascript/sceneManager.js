@@ -53,6 +53,7 @@ const DATA  = [
 class SceneManager {
 
   constructor () {
+    this._el = document.querySelector('.main-container')
     this.scene = new Scene()
     this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 
@@ -63,8 +64,7 @@ class SceneManager {
     this.renderer = new WebGLRenderer({antialias: true})
     this.renderer.setSize(window.innerWidth, window.innerHeight)
     this.renderer.setClearColor(0xFCFCFC)
-    document.body.appendChild(this.renderer.domElement)
-
+    this._el.insertBefore(this.renderer.domElement, this._el.firstChild)
     this.classInit = true
     this.init()
   }
@@ -77,7 +77,7 @@ class SceneManager {
       LOADS.push(Loader.loadImage(item.images.foreground))
     })
     Promise.all(LOADS).then((e) => {
-      this.slider = new Slider(e)
+      this.slider = new Slider(e, DATA)
     })
 
   }

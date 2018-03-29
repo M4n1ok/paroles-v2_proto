@@ -10,7 +10,8 @@ import vBasic from "../../shaders/basic.vert"
 class Card {
 
   constructor (option) {
-
+    this.id = option.id
+    this.title = option.title
     this.option = option
     this.classInit = true
     this.offset = 0
