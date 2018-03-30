@@ -61,8 +61,8 @@ class TitleManager {
     tweenOpts.y = 65
     //tweenOpts.onComplete = this._toggleSkew
 
-    TweenMax.to(this._el, 1.25, tweenOpts)
-    TweenMax.to(this._el, 1.75, {ease: Expo.easeOut, opacity: 0, onComplete: () => {
+    TweenMax.to(this._el, 0.55, tweenOpts)
+    TweenMax.to(this._el, 0.65, {ease: Expo.easeOut, opacity: 0, onComplete: () => {
         this._toggleSkew()
         this._initBeforeEnterUI()
         const TimeOut = window.setTimeout(() => {
