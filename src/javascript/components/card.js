@@ -1,5 +1,5 @@
 // Librairies
-import { PlaneBufferGeometry, MeshBasicMaterial, Mesh, DoubleSide, Vector3, Texture, RepeatWrapping, RawShaderMaterial } from 'three'
+import { PlaneBufferGeometry, MeshBasicMaterial, Mesh, DoubleSide, Vector2, Vector3, Texture, RepeatWrapping, RawShaderMaterial } from 'three'
 
 // Utils
 import M from '../utils/math'
@@ -40,13 +40,17 @@ class Card {
         foreground: { type: 't', value: this.foreground },
         offset: { type: 'f', value: this.offset / 200},
         time: { type: 'f', value: StorageInstance.time },
+        resolution: { type: "v2", value: new Vector2() },
         affect: { type: 'f', value: 1 },
-        strength: { type: 'f', value: 1 }
+        strength: { type: 'f', value: 1 },
+        type: { type: 'f', value: this.option.type}
       },
       vertexShader: vBasic,
       fragmentShader: fBasic,
 
     });
+    this.material.uniforms.resolution.value.x = window.innerWidth;
+    this.material.uniforms.resolution.value.y = window.innerHeight;
     this.background.needsUpdate = true
     this.foreground.needsUpdate = true
     this.object = new Mesh(geometry, this.material)

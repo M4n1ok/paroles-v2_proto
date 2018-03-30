@@ -22,7 +22,8 @@ const DATA  = [
     colors: {
       background: 'FCFCFC',
       controls: '343434'
-    }
+    },
+    type: 1
   },
   {
     id: 2,
@@ -34,7 +35,8 @@ const DATA  = [
     colors: {
       background: 'FCFCFC',
       controls: '343434'
-    }
+    },
+    type: 0
   },
   {
     id: 3,
@@ -46,7 +48,8 @@ const DATA  = [
     colors: {
       background: 'FCFCFC',
       controls: '343434'
-    }
+    },
+    type: 0
   }
 ]
 

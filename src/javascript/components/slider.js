@@ -116,7 +116,8 @@ class Slider {
       offset: 1,
       direction: 'horizontal',
       background: null,
-      foreground: null
+      foreground: null,
+      type: null
     }
 
     let scaleX = (window.innerWidth / window.innerHeight) * M.TanDeg(75 / 2) * 0.80
@@ -130,6 +131,7 @@ class Slider {
       option.idx = i
       option.background = this.imgs[y]
       option.foreground = this.imgs[y + 1]
+      option.type = this.cardsData[i].type;
 
       option.id = this.cardsData[i].id
       option.title = this.cardsData[i].title
