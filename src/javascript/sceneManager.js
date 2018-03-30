@@ -14,13 +14,13 @@ const PATH = '../assets/'
 const DATA  = [
   {
     id: 1,
-    title: 'Témoignage 1',
+    title: 'entre l\'enfer et le paradis',
     images: {
       background: PATH + 'proto_01_2.png',
       foreground: PATH + 'proto_01_1.png'
     },
     colors: {
-      background: 'FCFCFC',
+      background: 'rgba(128, 234, 71, 0.81)',
       controls: '343434'
     },
     type: 1,
@@ -29,13 +29,13 @@ const DATA  = [
   },
   {
     id: 2,
-    title: 'Témoignage 2',
+    title: 'Après l\'effort, sans réconfort',
     images: {
       background: PATH + 'proto_02_2.png',
       foreground: PATH + 'proto_02_1.png'
     },
     colors: {
-      background: 'FCFCFC',
+      background: '#ff5716',
       controls: '343434'
     },
     type: 0,
@@ -44,13 +44,13 @@ const DATA  = [
   },
   {
     id: 3,
-    title: 'Témoignage 3',
+    title: 'La splendeur du carnaval',
     images: {
       background: PATH + 'proto_03_2.png',
       foreground: PATH + 'proto_03_1.png'
     },
     colors: {
-      background: 'FCFCFC',
+      background: '#484228fc',
       controls: '343434'
     },
     type: 0,
@@ -70,10 +70,10 @@ class SceneManager {
     StorageInstance.camera = this.camera
 
 
-    this.renderer = new WebGLRenderer({antialias: true})
+    this.renderer = new WebGLRenderer({antialias: true, alpha: true})
     this.renderer.setSize(window.innerWidth, window.innerHeight)
-    this.renderer.setClearColor(0xFCFCFC)
-    this._el.insertBefore(this.renderer.domElement, this._el.firstChild)
+    this.renderer.setClearColor(0x000000, 0)
+    this._el.insertBefore(this.renderer.domElement, this._el.children[1])
     this.classInit = true
     this.init()
   }

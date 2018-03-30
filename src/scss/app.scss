@@ -68,6 +68,21 @@ canvas {
   justify-content: center;
 }
 
+
+.main-container__background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.15;
+  background-image: url("/assets/fog.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  background-blend-mode: exclusion, lighten;
+  transition: background 600ms ease-in-out;
+}
+
 .slideshow__title-container {
   height: 65px;
   overflow: hidden;
@@ -77,9 +92,9 @@ canvas {
   display: inline-block;
   font-family: "Inter UI", sans-serif;
   color: #fcfcfc;
-  font-size: 65px;
+  font-size: 40px;
   line-height: 65px;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   white-space: nowrap;
   //mix-blend-mode: luminosity;
@@ -100,7 +115,7 @@ canvas {
 
   &.slideshow__nav--left {
     left: 0;
-    cursor: url("/assets/chevron-left.png") 8 16, auto;
+    cursor: url("/assets/chevron-left.png") 8 15, auto;
   }
 
   &.slideshow__nav--right {

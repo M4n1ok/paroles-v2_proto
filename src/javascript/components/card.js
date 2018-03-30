@@ -20,6 +20,7 @@ class Card {
     this.divideTime = parseFloat(option.divideTime)
     this.classInit = true
     this.offset = 0
+    this.bcg = option.bcg
     this.init()
   }
 

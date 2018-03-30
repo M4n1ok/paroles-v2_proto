@@ -31,6 +31,7 @@ class Slider {
     this.classInit = true
     this.currentIndex = 0
     this.currentCard = null
+    this.background = document.querySelector('.main-container__background')
     this.init()
   }
 
@@ -76,6 +77,7 @@ class Slider {
     this.time = new Date().getTime() + (0.5 * 1000)
     let to = (this.time - new Date().getTime()) / 1000
     TweenMax.to(this, to, {ease: Expo.easeOut, x: this.toDirection})
+    this.background.style.backgroundColor = this.currentCard.bcg
   }
 
   prevSlide () {
@@ -96,6 +98,8 @@ class Slider {
     this.time = new Date().getTime() + (0.5 * 1000)
     let to = (this.time - new Date().getTime()) / 1000
     TweenMax.to(this, to, {ease: Expo.easeOut, x: this.toDirection})
+    console.log(this.currentCard.background)
+    this.background.style.backgroundColor = this.currentCard.bcg
   }
 
   updateCardTitle() {
@@ -138,6 +142,7 @@ class Slider {
       option.id = this.cardsData[i].id
       option.title = this.cardsData[i].title
       option.divideTime = this.cardsData[i].divideTime
+      option.bcg = this.cardsData[i].colors.background
       let card = new Card(option)
       this.cards.push(card)
       this.object.add(card.object)
@@ -145,6 +150,7 @@ class Slider {
       y += 2
 
       if(i === 0) {
+        this.background.style.backgroundColor = card.bcg
         this.titleManager.title = card.title
         const TIMEOUT = window.setTimeout(() => {
           this.titleManager._show()
