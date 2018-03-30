@@ -8,7 +8,6 @@ uniform float affect;
 uniform float strength;
 uniform float type;
 
-
 varying vec2 vUv;
 
 uniform sampler2D background;
@@ -64,11 +63,12 @@ void main() {
   vec4 foregroundText = texture2D( foreground, vec2( (vUv.x * 0.98 + 0.01) + offset, vUv.y));
   if(foregroundText.w < 0.4){
     if(type == 0.){
-      color = texture2D( background, vec2( (vUv.x + (sin(time * 20. + vUv.y * 400.) * affect * cos(sin(vUv.x) * cos(vUv.y + vUv.x))) * (strength / 1000.)), vUv.y)).rgb;
+      color = texture2D( background, vec2( (vUv.x + (sin(time * 20. + vUv.y * 100.) * affect * cos(sin(vUv.x) * cos(vUv.y + vUv.x))) * (strength / 1000.)), vUv.y)).rgb;
     }else if(type == 1.){
-      vec2 st = vUv.xy/resolution.xy*3.;
+      vec3 backgroundText = texture2D( background, vUv.xy).rgb;
+      vec2 st = gl_FragCoord.xy/resolution.xy*4.;
+      // st += st * abs(sin(u_time*0.1)*3.0);
       color = vec3(0.0);
-
 
       vec2 q = vec2(0.);
       q.x = fbm( st + 0.00*time);
@@ -92,7 +92,7 @@ void main() {
                   vec3(0.666667,1,1),
                   clamp(length(r.x),0.0,1.0));
 
-      color = (f*f*f+.6*f*f+.5*f)*color;
+      color = mix(vec3(1.0 - color.r, 1.0 - color.g, 1.0 - color.b), backgroundText.rgb, color.r * 0.33 + color.g * 0.33 + color * 0.34 );
 
     }
   }else{

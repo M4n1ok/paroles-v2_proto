@@ -23,7 +23,9 @@ const DATA  = [
       background: 'FCFCFC',
       controls: '343434'
     },
-    type: 1
+    type: 1,
+    strength: 1,
+    divideTime: 1
   },
   {
     id: 2,
@@ -36,7 +38,9 @@ const DATA  = [
       background: 'FCFCFC',
       controls: '343434'
     },
-    type: 0
+    type: 0,
+    strength: 0.5,
+    divideTime: 2
   },
   {
     id: 3,
@@ -49,7 +53,9 @@ const DATA  = [
       background: 'FCFCFC',
       controls: '343434'
     },
-    type: 0
+    type: 0,
+    strength: 0.5,
+    divideTime: 3
   }
 ]
 

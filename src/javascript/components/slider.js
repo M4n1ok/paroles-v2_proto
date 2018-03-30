@@ -117,7 +117,9 @@ class Slider {
       direction: 'horizontal',
       background: null,
       foreground: null,
-      type: null
+      type: null,
+      strength: null,
+      divideTime: null
     }
 
     let scaleX = (window.innerWidth / window.innerHeight) * M.TanDeg(75 / 2) * 0.80
@@ -131,11 +133,11 @@ class Slider {
       option.idx = i
       option.background = this.imgs[y]
       option.foreground = this.imgs[y + 1]
-      option.type = this.cardsData[i].type;
-
+      option.type = this.cardsData[i].type
+      option.strength = this.cardsData[i].strength
       option.id = this.cardsData[i].id
       option.title = this.cardsData[i].title
-
+      option.divideTime = this.cardsData[i].divideTime
       let card = new Card(option)
       this.cards.push(card)
       this.object.add(card.object)
@@ -159,8 +161,7 @@ class Slider {
     for (let i = 0; i < this.nCards; i++) {
       if (this.cards[i].material && EventManager.mouseEventInformations.x){
         this.cards[i].object.material.uniforms.offset.value = EventManager.mouseEventInformations.x / 200
-        this.cards[i].object.material.uniforms.time.value = StorangeInstance.time
-        //console.log(this.cards[i].object.material.uniforms.offset.value);
+        this.cards[i].object.material.uniforms.time.value = StorangeInstance.time / this.cards[i].divideTime
       }
       this.cards[i].object.rotation.set(EventManager.mouseEventInformations.y * M.degreesToRads(this.maxDeg), EventManager.mouseEventInformations.x * M.degreesToRads(this.maxDeg), 0)
     }

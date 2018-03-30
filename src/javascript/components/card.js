@@ -16,12 +16,15 @@ class Card {
     this.id = option.id
     this.title = option.title
     this.option = option
+    this.strength = option.strength
+    this.divideTime = parseFloat(option.divideTime)
     this.classInit = true
     this.offset = 0
     this.init()
   }
 
   init () {
+
     this.background = new Texture(this.option.background)
     this.background.wrapS = RepeatWrapping
     this.background.wrapT = RepeatWrapping
@@ -42,7 +45,7 @@ class Card {
         time: { type: 'f', value: StorageInstance.time },
         resolution: { type: "v2", value: new Vector2() },
         affect: { type: 'f', value: 1 },
-        strength: { type: 'f', value: 1 },
+        strength: { type: 'f', value: this.option.strength },
         type: { type: 'f', value: this.option.type}
       },
       vertexShader: vBasic,
