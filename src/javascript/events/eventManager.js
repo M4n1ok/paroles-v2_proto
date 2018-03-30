@@ -1,7 +1,8 @@
+import Emitter from './emitter'
+import titleManagerEvent from './titleManagerEvents'
 class EventManager {
 
   constructor () {
-
     this.mouseEventInformations = {
       clientX: null,
       clientY: null,
@@ -25,6 +26,7 @@ class EventManager {
       this.mouseEventInformations.clientY = e.clientY
       this.mouseEventInformations.x = (((e.clientX) / window.innerWidth) - 0.5) * 2
       this.mouseEventInformations.y = (((e.clientY) / window.innerHeight) - 0.5) * 2
+      Emitter.emit(titleManagerEvent.skew, this.mouseEventInformations)
     })
 
     if (this.nextBtn) this.nextBtn.addEventListener('click', () => {

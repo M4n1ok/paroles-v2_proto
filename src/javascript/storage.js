@@ -1,14 +1,14 @@
 class Storage {
 
   constructor () {
-    this.toUpdate = [],
-    this.cache = {},
-    this.toLoaded = 0,
-    this.isLoaded = 0,
-    this.mode = 0,
-    this.progress = 0,
-    this.time = 0,
-    this.scene
+    this.toUpdate = []
+    this.cache = {}
+    this.toLoaded = 0
+    this.isLoaded = 0
+    this.mode = 0
+    this.progress = 0
+    this.time = 0
+    this.scene = null
 
     this.event = document.createEvent('Event')
     this.event.initEvent('elmtsLoaded', true, true)

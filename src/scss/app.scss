@@ -59,6 +59,34 @@ canvas {
   visibility: hidden;
 }
 
+.main-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideshow__title-container {
+  height: 65px;
+  overflow: hidden;
+}
+
+.slideshow__title {
+  display: inline-block;
+  font-family: "Inter UI", sans-serif;
+  color: #fcfcfc;
+  font-size: 65px;
+  line-height: 65px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 2px 1px 1px #343434f2;
+  mix-blend-mode: hard-light;
+  opacity: 0.95;
+  z-index: 1;
+}
 
 .slideshow__nav {
   position: absolute;
